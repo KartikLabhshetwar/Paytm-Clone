@@ -4,18 +4,23 @@ const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const app = express();
 
-const corsOptions = {
-    origin: 'https://paytm-clone-frontend.onrender.com',
+app.use(cors({
+    origin: '*', // Allow all origins
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
     optionsSuccessStatus: 200
-};
+}));
 
-app.use(cors(corsOptions));
+// Log all incoming requests
+app.use((req, res, next) => {
+    console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
+    console.log('Headers:', req.headers);
+    next();
+});
 
 // Enable pre-flight requests for all routes
-app.options('*', cors(corsOptions));
+app.options('*', cors());
 
 app.use(express.json());
 
@@ -24,7 +29,7 @@ app.use("/api/v1/", mainRoute);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
-    console.error(err.stack);
+    console.error(`${new Date().toISOString()} - Error:`, err);
     res.status(500).json({ message: 'Something went wrong on the server' });
 });
 
