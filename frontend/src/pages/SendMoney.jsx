@@ -42,7 +42,7 @@ export const SendMoney = () => {
                     />
                     </div>
                     <button onClick={ async ()=> {
-                        await axios.post("http://localhost:3000/api/v1/account/transfer", {
+                        await axios.post("https://paytm-clone-backend-pe39.onrender.com/api/v1/account/transfer", {
                             to: id,
                             amount: amount
                         }, {

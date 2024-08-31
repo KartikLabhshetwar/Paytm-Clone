@@ -21,7 +21,7 @@ export const UserProfile = () => {
     const fetchUserProfile = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("http://localhost:3000/api/v1/user/profile", {
+        const response = await axios.get("https://paytm-clone-backend-pe39.onrender.com/api/v1/user/profile", {
           headers: { Authorization: `Bearer ${token}` }
         });
         setUser(response.data);

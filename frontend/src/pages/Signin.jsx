@@ -23,7 +23,7 @@ export const Signin = () => {
           <div className="pt-4">
             <Button
               onPress={async () => {
-                const response = await axios.post("http://localhost:3000/api/v1/user/signin", {
+                const response = await axios.post("https://paytm-clone-backend-pe39.onrender.com/api/v1/user/signin", {
                   username,
                   password,
                 });
