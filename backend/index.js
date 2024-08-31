@@ -3,7 +3,7 @@ const cors = require("cors")
 const jwt = require("jsonwebtoken")
 const app = express();
 app.use(cors({
-    origin: ['https://paytm-clone-rho.vercel.app'],
+    origin: '*',
     credentials: true
   }))
 app.use(express.json())
