@@ -4,13 +4,17 @@ const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const app = express();
 
-app.use(cors({
-    origin: '*', // Allow all origins
+// CORS configuration
+const corsOptions = {
+    origin: 'https://paytm-clone-frontend.onrender.com', // Replace with your frontend URL
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
-    optionsSuccessStatus: 200
-}));
+    optionsSuccessStatus: 204
+};
+
+// Apply CORS middleware
+app.use(cors(corsOptions));
 
 // Log all incoming requests
 app.use((req, res, next) => {
@@ -19,8 +23,8 @@ app.use((req, res, next) => {
     next();
 });
 
-// Enable pre-flight requests for all routes
-app.options('*', cors());
+// Handle preflight requests
+app.options('*', cors(corsOptions));
 
 app.use(express.json());
 
